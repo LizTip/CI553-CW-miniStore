@@ -1,6 +1,6 @@
 package clients.customer;
+
 import java.util.HashMap;
-import java.util.Objects;
 
 
 //class ProductNotFoundException extends NullPointerException {
@@ -26,10 +26,10 @@ public class NameToNumber extends HashMap<String, String> {
     // Adjusted getNumberByName method to work within this instance
     public String getNumberByName(String value) throws NullPointerException {
         for (Entry<String, String> entry : this.entrySet()) {
-            if (Objects.equals(value, entry.getValue())){
+            if (value.equalsIgnoreCase(entry.getValue())){ // Case-insensitive comparison
                 return entry.getKey();
             }
         }
-        throw new NullPointerException(value);
+        throw new NullPointerException(value); // Value not found
     }
 }
