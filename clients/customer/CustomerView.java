@@ -76,9 +76,9 @@ public class CustomerView implements Observer
     theBtCheckName.setForeground(Color.BLACK);
     theBtCheckName.addActionListener(                   // Call back code
             e -> cont.doCheckByName( theInput.getText() ) );
-    cp.add( theBtCheckName );                           //  Add to canvas
+//    cp.add( theBtCheckName );                           //  Add to canvas
 
-    theBtClear.setBounds( 16, 25+60*2, 80, 40 );    // Clear button
+    theBtClear.setBounds( 16, 25+60*1, 80, 40 );    // Clear button
     theBtClear.addActionListener(                   // Call back code
       e -> cont.doClear() );
     cp.add( theBtClear );                           //  Add to canvas

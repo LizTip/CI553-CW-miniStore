@@ -14,8 +14,7 @@ import java.util.Observer;
 /**
  * View of the model 
  */
-public class CashierView implements Observer
-{
+public class CashierView implements Observer{
   private static final int H = 300;       // Height of window pixels
   private static final int W = 400;       // Width  of window pixels
   
@@ -26,6 +25,7 @@ public class CashierView implements Observer
   private final JLabel      pageTitle  = new JLabel();
   private final JLabel      theAction  = new JLabel();
   private final JTextField  theInput   = new JTextField();
+  private final JTextField  buyQuantity   = new JTextField();
   private final JTextArea   theOutput  = new JTextArea();
   private final JScrollPane theSP      = new JScrollPane();
   private final JButton     theBtCheck = new JButton( CHECK );
@@ -68,7 +68,7 @@ public class CashierView implements Observer
     
     theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check Button
     theBtCheck.addActionListener(                   // Call back code
-      e -> cont.doCheck( theInput.getText() ) );
+      e -> cont.doCheck( theInput.getText(), Integer.parseInt(buyQuantity.getText())));
     cp.add( theBtCheck );                           //  Add to canvas
 
     theBtBuy.setBounds( 16, 25+60*1, 80, 40 );      // Buy button 
@@ -85,7 +85,11 @@ public class CashierView implements Observer
     theAction.setText( "" );                        // Blank
     cp.add( theAction );                            //  Add to canvas
 
-    theInput.setBounds( 110, 50, 270, 40 );         // Input Area
+    buyQuantity.setBounds( 300, 50, 80, 40 );         // Input Area
+    buyQuantity.setText("1");                           // Blank
+    cp.add( buyQuantity );
+
+    theInput.setBounds( 110, 50, 170, 40 );         // Input Area
     theInput.setText("");                           // Blank
     cp.add( theInput );                             //  Add to canvas
 
@@ -126,6 +130,11 @@ public class CashierView implements Observer
       theOutput.setText( basket.getDetails() );
     
     theInput.requestFocus();               // Focus is here
+
+    if(message.equals("!!! Not in stock") ||message.contains("Purchased ")){
+      buyQuantity.setText("1");
+
+    }
   }
 
 }

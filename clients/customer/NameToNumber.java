@@ -2,6 +2,15 @@ package clients.customer;
 import java.util.HashMap;
 import java.util.Objects;
 
+
+//class ProductNotFoundException extends NullPointerException {
+//    public ProductNotFoundException() {
+//
+//    }
+//    public ProductNotFoundException(String productCode) {
+//        super(productCode);
+//    }
+//}
 public class NameToNumber extends HashMap<String, String> {
 
     NameToNumber(){
@@ -15,12 +24,12 @@ public class NameToNumber extends HashMap<String, String> {
     }
 
     // Adjusted getNumberByName method to work within this instance
-    public String getNumberByName(String value){
+    public String getNumberByName(String value) throws NullPointerException {
         for (Entry<String, String> entry : this.entrySet()) {
             if (Objects.equals(value, entry.getValue())){
                 return entry.getKey();
             }
         }
-        return null;
+        throw new NullPointerException(value);
     }
 }
