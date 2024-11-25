@@ -9,7 +9,7 @@ public class BetterCashierModel  extends CashierModel{
      *
      * @param mf The factory to create the connection objects
      */
-    public BetterCashierModel(MiddleFactory mf) {
+public BetterCashierModel(MiddleFactory mf) {
         super(mf);
     }
 
