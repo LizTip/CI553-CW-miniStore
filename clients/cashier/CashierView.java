@@ -12,7 +12,23 @@ import java.util.Observer;
 
 
 /**
- * View of the model 
+ * The graphical user interface (GUI) for the cashier system.
+ * It displays product information, allows user interactions like checking stock,
+ * buying products, and completing purchases, and observes changes in the {@link CashierModel}.
+ *
+ * <h2>Key Features:</h2>
+ * <ul>
+ *   <li>Displays messages and basket details.</li>
+ *   <li>Provides buttons for "Check," "Buy," and "Bought/Pay" operations.</li>
+ *   <li>Observes updates from the model and reflects changes in the view.</li>
+ * </ul>
+ *
+ * @see CashierModel
+ * @see CashierController
+ * @see Basket
+ * @author
+ * Liz Tipper
+ * @version 1.0
  */
 public class CashierView implements Observer{
   private static final int H = 300;       // Height of window pixels
@@ -22,19 +38,19 @@ public class CashierView implements Observer{
   private static final String BUY    = "Buy";
   private static final String BOUGHT = "Bought/Pay";
 
-  private final JLabel      pageTitle  = new JLabel();
-  private final JLabel      theAction  = new JLabel();
-  private final JTextField  theInput   = new JTextField();
-  private final JTextField  buyQuantity   = new JTextField();
-  private final JTextArea   theOutput  = new JTextArea();
-  private final JScrollPane theSP      = new JScrollPane();
-  private final JButton     theBtCheck = new JButton( CHECK );
-  private final JButton     theBtBuy   = new JButton( BUY );
-  private final JButton     theBtBought= new JButton( BOUGHT );
+  private final JLabel      pageTitle  = new JLabel();// Title displayed at the top
+  private final JLabel      theAction  = new JLabel();// Message display for system actions
+  private final JTextField  theInput   = new JTextField(); // Input field for product number
+  private final JTextField  buyQuantity   = new JTextField();// Input field for product quantity
+  private final JTextArea   theOutput  = new JTextArea(); // Output area for basket details
+  private final JScrollPane theSP      = new JScrollPane();// Scroll pane for the output area
+  private final JButton     theBtCheck = new JButton( CHECK );// Button for checking products
+  private final JButton     theBtBuy   = new JButton( BUY ); // Button for buying products
+  private final JButton     theBtBought= new JButton( BOUGHT ); // Button for processing payments
 
-  private StockReadWriter theStock     = null;
-  private OrderProcessing theOrder     = null;
-  private CashierController cont       = null;
+  private StockReadWriter theStock     = null; // Access to stock system
+  private OrderProcessing theOrder     = null; // Access to order processing system
+  private CashierController cont       = null;// Controller for user interactions
   
   /**
    * Construct the view
