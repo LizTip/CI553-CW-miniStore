@@ -50,6 +50,8 @@ public class PackingView implements Observer
     Container cp         = rpc.getContentPane();    // Content Pane
     Container rootWindow = (Container) rpc;         // Root Window
     cp.setLayout(null);                             // No layout manager
+    cp.setBackground(new Color(176, 184, 219));     // Set background color
+    rootWindow.setSize( W, H );
     rootWindow.setSize( W, H );                     // Size of Window
     rootWindow.setLocation( x, y );
     

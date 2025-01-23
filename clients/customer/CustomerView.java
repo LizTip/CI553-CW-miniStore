@@ -40,14 +40,14 @@ public class CustomerView implements Observer
    * Construct the view
    * @param rpc   Window in which to construct
    * @param mf    Factor to deliver order and stock objects
-   * @param x     x-cordinate of position of window on screen 
-   * @param y     y-cordinate of position of window on screen  
+   * @param x     x-cordinate of position of window on screen
+   * @param y     y-cordinate of position of window on screen
    */
-  
+
   public CustomerView( RootPaneContainer rpc, MiddleFactory mf, int x, int y )
   {
-    try                                             // 
-    {      
+    try                                             //
+    {
       theStock  = mf.makeStockReader();             // Database Access
     } catch ( Exception e )
     {
@@ -56,23 +56,25 @@ public class CustomerView implements Observer
     Container cp         = rpc.getContentPane();    // Content Pane
     Container rootWindow = (Container) rpc;         // Root Window
     cp.setLayout(null);                             // No layout manager
+    cp.setBackground(new Color(176, 184, 219));     // Set background color
+    rootWindow.setSize( W, H );
     rootWindow.setSize( W, H );                     // Size of Window
     rootWindow.setLocation( x, y );
 
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
-    
-    pageTitle.setBounds( 110, 0 , 270, 20 );       
-    pageTitle.setText( "Search products" );                        
+
+    pageTitle.setBounds( 110, 0 , 270, 20 );
+    pageTitle.setText( "Search products" );
     cp.add( pageTitle );
 
     theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check button
     theBtCheck.addActionListener(                   // Call back code
-      e -> cont.doCheck( theInput.getText() ) );
+            e -> cont.doCheck( theInput.getText() ) );
     cp.add( theBtCheck );                           //  Add to canvas
 
     theBtClear.setBounds( 16, 25+60*1, 80, 40 );    // Clear button
     theBtClear.addActionListener(                   // Call back code
-      e -> cont.doClear() );
+            e -> cont.doClear() );
     cp.add( theBtClear );                           //  Add to canvas
 
     theAction.setBounds( 110, 25 , 270, 20 );       // Message area
@@ -82,22 +84,22 @@ public class CustomerView implements Observer
     theInput.setBounds( 110, 50, 270, 40 );         // Product no area
     theInput.setText("");                           // Blank
     cp.add( theInput );                             //  Add to canvas
-    
+
     theSP.setBounds( 110, 100, 270, 160 );          // Scrolling pane
     theOutput.setText( "" );                        //  Blank
-    theOutput.setFont( f );                         //  Uses font  
+    theOutput.setFont( f );                         //  Uses font
     cp.add( theSP );                                //  Add to canvas
     theSP.getViewport().add( theOutput );           //  In TextArea
 
     thePicture.setBounds( 16, 25+60*2-10, 80, 80 );   // Picture area
     cp.add( thePicture );                           //  Add to canvas
     thePicture.clear();
-    
+
     rootWindow.setVisible( true );                  // Make visible);
     theInput.requestFocus();                        // Focus is here
   }
 
-   /**
+  /**
    * The controller object, used so that an interaction can be passed to the controller
    * @param c   The controller
    */
@@ -110,9 +112,9 @@ public class CustomerView implements Observer
   /**
    * Update the view
    * @param modelC   The observed model
-   * @param arg      Specific args 
+   * @param arg      Specific args
    */
-   
+
   public void update( Observable modelC, Object arg )
   {
     CustomerModel model  = (CustomerModel) modelC;
